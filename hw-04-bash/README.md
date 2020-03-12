@@ -18,4 +18,4 @@
 4. Generate files for report.
 5. Generate report.
 6. Send report.
-7. Need add `report.sh` to `/etc/cron.{hourly}`.
+7. Need add `report.sh` to `/etc/cron.hourly`.
