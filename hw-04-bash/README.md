@@ -10,6 +10,12 @@
 В письме должно быть прописан обрабатываемый временной диапазон, должна быть реализована защита от мультизапуска.
 Критерии оценки: 5 - трапы и функции, а также sed и find +1 балл.
 
-## Results
+## HW Process
 
-
+1. Function to find access.log path from argument (for example nginx, apache).
+2. Function to get last hour from log.
+3. Use trap to prevent multiple running.
+4. Generate files for report.
+5. Generate report.
+6. Send report.
+7. Need add `report.sh` to `/etc/cron.{hourly}`.
