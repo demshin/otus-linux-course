@@ -1,4 +1,4 @@
-# HW-03 LVM
+# HW-04 BASH
 
 ## Statement of the problem
 
