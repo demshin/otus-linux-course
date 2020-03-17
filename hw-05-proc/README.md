@@ -16,4 +16,5 @@
 ## Results of HW
 
 1. `ps ax` analogue at `./ps-ax.sh`.
-2. 
+2. Scripts for test concurrent processes with `nice` at `./concurrent`. Also see `nice.log`.
+3. 
