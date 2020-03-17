@@ -17,4 +17,4 @@
 
 1. `ps ax` analogue at `./ps-ax.sh`.
 2. Scripts for test concurrent processes with `nice` at `./concurrent`. Also see `nice.log`.
-3. 
+3. Scripts for test concurrent processes with `ionice` at `./concurrent`. Also see `ionice.log`.
