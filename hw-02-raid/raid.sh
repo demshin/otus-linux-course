@@ -2,8 +2,8 @@
 
 mdadm --zero-superblock --force /dev/sd{b,c,d,e,f}
 mdadm --create --verbose /dev/md0 -l 5 -n 5 /dev/sd{b,c,d,e,f}
-echo "DEVICE partitions" > /etc/mdadm.conf
-yes | mdadm --detail --scan --verbose | awk '/ARRAY/ {print}' >> /etc/mdadm.conf
+echo "DEVICE partitions" >/etc/mdadm.conf
+yes | mdadm --detail --scan --verbose | awk '/ARRAY/ {print}' >>/etc/mdadm.conf
 parted -s /dev/md0 mklabel gpt
 parted /dev/md0 mkpart primary ext4 0% 20%
 parted /dev/md0 mkpart primary ext4 20% 40%
