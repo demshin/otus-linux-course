@@ -1,6 +1,4 @@
-# Describe VMs
 MACHINES = {
-  # VM name "kernel update"
   :"centos7" => {
               :box_name => "centos/7",
               :cpus => 2,
