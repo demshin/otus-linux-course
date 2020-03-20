@@ -1,0 +1,12 @@
+all:
+  children:
+    web:
+  vars:
+    ansible_user: 'vagrant'
+
+web:
+  hosts:
+    prod-nginx:
+      ansible_host: 127.0.0.1
+      ansible_port: 2222
+      ansible_ssh_private_key_file: /Users/demshin/dev/edu/otus/otus-linux-course/hw-10-ansible/.vagrant/machines/centos7/virtualbox/private_key

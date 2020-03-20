@@ -1,0 +1,7 @@
+---
+- name: show info about the environment this host belongs to
+  debug:
+    msg: "This host is in {{ env }} environment"
+
+- include: install_nginx.yml
+- include: config_nginx.yml
