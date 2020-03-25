@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  nginx:
+    image: demshin/nginx-alpine
+    volumes:
+      - ${PWD}/nginx-alpine/php-nginx.conf:/etc/nginx/nginx.conf
+      - ${PWD}/nginx-alpine/www/:/www/
+    networks:
+      - web
+    depends_on:
+      - php
+    ports:
+      - 80:80
+  php:
+    image: demshin/php-fpm-alpine
+    volumes:
+      - ${PWD}/php-fpm-alpine/php-fpm.d:/etc/php7/php-fpm.d
+      - ${PWD}/nginx-alpine/www/:/www/
+    ports:
+      - 9000
+    networks:
+      - web
+
+networks:
+  web:
