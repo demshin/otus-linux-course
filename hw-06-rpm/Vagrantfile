@@ -1,0 +1,41 @@
+MACHINES = {
+  :'centos7' => {
+              :box_name => 'centos/7',
+              :cpus => 2,
+              :memory => 2048,
+              :net => [],
+              :forwarded_port => []
+            }
+}
+
+Vagrant.configure('2') do |config|
+  MACHINES.each do |boxname, boxconfig|
+    config.vm.synced_folder '.', '/vagrant', disabled: true
+    config.vm.define boxname do |box|
+      box.vm.box = boxconfig[:box_name]
+      box.vm.host_name = boxname.to_s
+      if boxconfig.key?(:net)
+        boxconfig[:net].each do |ipconf|
+          box.vm.network 'private_network', ipconf
+        end
+      end
+      if boxconfig.key?(:forwarded_port)
+        boxconfig[:forwarded_port].each do |port|
+          box.vm.network 'forwarded_port', port
+        end
+      end
+      box.vm.provider 'virtualbox' do |v|
+        v.memory = boxconfig[:memory]
+        v.cpus = boxconfig[:cpus]
+      end
+      box.vm.provision 'shell', inline: <<-SHELL
+        yum install -y redhat-lsb-core wget rpmdevtools rpm-build createrepo yum-utils
+        wget https://nginx.org/packages/centos/7/SRPMS/nginx-1.14.1-1.el7_4.ngx.src.rpm
+        rpm -i nginx-1.14.1-1.el7_4.ngx.src.rpm
+        wget https://www.openssl.org/source/latest.tar.gz
+        tar -xvf latest.tar.gz
+        yum-builddep rpmbuild/SPECS/nginx.spec
+      SHELL
+    end
+  end
+end
